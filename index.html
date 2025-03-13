@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>AutomaTech - Revolucionando processos com automação inteligente</title>
+   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+   <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js"></script>
+
+<!-- Firebase SDK -->
+<script type="module">
+    // Importa os módulos necessários
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
+  
+    // Configuração do Firebase
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBWnseedK326_9MfwwB1IP9xH5b0djSsbQ",
+  authDomain: "automatech-66e7a.firebaseapp.com",
+  databaseURL: "https://automatech-66e7a-default-rtdb.firebaseio.com",
+  projectId: "automatech-66e7a",
+  storageBucket: "automatech-66e7a.firebasestorage.app",
+  messagingSenderId: "951866740309",
+  appId: "1:951866740309:web:892bd4e6622a7f239d8edc",
+  measurementId: "G-HXEF18GCKB"
+};
+  
+    // Inicializa o Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);  // Inicializa o Firestore
+    // Seleciona o formulário e os campos
+    const form = document.querySelector('form');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const companyInput = document.getElementById('company');
+    const messageInput = document.getElementById('message');
+  
+    // Quando o formulário for enviado
+    form.addEventListener('submit', async function(event) {
+      event.preventDefault();  // Impede o envio padrão do formulário
+  
+      // Coleta os dados dos campos
+      const name = nameInput.value;
+      const email = emailInput.value;
+      const company = companyInput.value;
+      const message = messageInput.value;
+  
+      try {
+        // Adiciona o documento à coleção "messages" no Firestore
+        const docRef = await addDoc(collection(db, "formulario_contato"), {
+          name: name,
+          email: email,
+          company: company,
+          message: message,
+          timestamp: new Date()
+        });
+        
+        alert('Mensagem enviada com sucesso!');
+        form.reset();  // Limpa o formulário após envio
+      } catch (error) {
+        console.error("Erro ao enviar a mensagem: ", error);
+        alert('Erro ao enviar a mensagem. Tente novamente.');
+      }
+    });
+  </script>
+  
+  
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Automa<span>Tech</span></a>
+                
+                <!-- Botão do menu hamburguer -->
+                <div class="hamburger-menu">
+                    <div class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="#features">Soluções</a></li>
+                    <li><a href="#sectors">Setores</a></li>
+                    <li><a href="#testimonials">Depoimentos</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Transforme seu negócio com automação inteligente</h1>
+                    <p>Eliminamos processos manuais repetitivos, aumentamos a produtividade e reduzimos erros operacionais através de soluções personalizadas de automação.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn">Solicite uma demonstração</a>
+                        <a href="#features" class="btn btn-secondary" style="margin-left: 15px;">Conheça nossas soluções</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="robot-container">
+                        <div class="robot">
+                            <div class="robot-head">
+                                <div class="antenna"></div>
+                                <div class="robot-face">
+                                    <div class="eyes-container">
+                                        <div class="eye left-eye">
+                                            <div class="pupil"></div>
+                                        </div>
+                                        <div class="eye right-eye">
+                                            <div class="pupil"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mouth"></div>
+                                </div>
+                            </div>
+                            <div class="robot-body">
+                                <div class="chest-panel">
+                                    <div class="button"></div>
+                                    <div class="button"></div>
+                                    <div class="button"></div>
+                                </div>
+                                <div class="arms-container">
+                                    <div class="arm left-arm"></div>
+                                    <div class="arm right-arm"></div>
+                                </div>
+                            </div>
+                            <div class="robot-legs">
+                                <div class="leg left-leg"></div>
+                                <div class="leg right-leg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossas Soluções</h2>
+                <p>Transformamos a maneira como sua empresa opera, automatizando processos manuais e repetitivos para que você possa focar no que realmente importa.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Consultoria Personalizada</h3>
+                    <p>Analisamos seus processos atuais e desenvolvemos soluções de automação sob medida para suas necessidades específicas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>Soluções Pré-Prontas</h3>
+                    <p>Pacotes de automação para processos comuns que podem ser implementados rapidamente na sua empresa.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Assinatura (SaaS)</h3>
+                    <p>Plataforma online para que sua empresa possa criar e gerenciar suas próprias automações de forma intuitiva.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Treinamento e Suporte</h3>
+                    <p>Capacitamos sua equipe para implementar e gerenciar soluções de automação, com suporte contínuo.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Integração de Sistemas</h3>
+                    <p>Conectamos diferentes sistemas e plataformas para criar fluxos de trabalho automatizados e eliminar silos de informação.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Análise de Processos</h3>
+                    <p>Identificamos gargalos e oportunidades de melhoria em seus processos para maximizar a eficiência.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sectors Section -->
+    <section class="sectors" id="sectors">
+        <div class="container">
+            <div class="section-header">
+                <h2>Setores que Atendemos</h2>
+                <p>Nossas soluções de automação são adaptadas para atender às necessidades específicas de diversos setores.</p>
+            </div>
+            <div class="sectors-grid">
+                <div class="sector-card">
+                    <div class="sector-image" style="background-image: url('/api/placeholder/400/200')"></div>
+                    <div class="sector-content">
+                        <h3>Finanças</h3>
+                        <p>Automatização de relatórios, reconciliação bancária, processamento de faturamento e análise financeira.</p>
+                        <a href="#contact" class="btn">Saiba mais</a>
+                    </div>
+                </div>
+                <div class="sector-card">
+                    <div class="sector-image" style="background-image: url('/api/placeholder/400/200')"></div>
+                    <div class="sector-content">
+                        <h3>Recursos Humanos</h3>
+                        <p>Automação de cadastro de colaboradores, processos de admissão e demissão, folha de pagamento e gestão de benefícios.</p>
+                        <a href="#contact" class="btn">Saiba mais</a>
+                    </div>
+                </div>
+                <div class="sector-card">
+                    <div class="sector-image" style="background-image: url('/api/placeholder/400/200')"></div>
+                    <div class="sector-content">
+                        <h3>Varejo e E-commerce</h3>
+                        <p>Integração entre marketplaces, gestão de pedidos, controle de estoque e logística automatizada.</p>
+                        <a href="#contact" class="btn">Saiba mais</a>
+                    </div>
+                </div>
+                <div class="sector-card">
+                    <div class="sector-image" style="background-image: url('/api/placeholder/400/200')"></div>
+                    <div class="sector-content">
+                        <h3>Atendimento ao Cliente</h3>
+                        <p>Chatbots, respostas automáticas, coleta de feedback e gerenciamento de tickets de suporte.</p>
+                        <a href="#contact" class="btn">Saiba mais</a>
+                    </div>
+                </div>
+                <div class="sector-card">
+                    <div class="sector-image" style="background-image: url('/api/placeholder/400/200')"></div>
+                    <div class="sector-content">
+                        <h3>Indústria e Logística</h3>
+                        <p>Monitoramento de estoques, automação de notas fiscais, controle de produção e gestão de transportes.</p>
+                        <a href="#contact" class="btn">Saiba mais</a>
+                    </div>
+                </div>
+                <div class="sector-card">
+                    <div class="sector-image" style="background-image: url('/api/placeholder/400/200')"></div>
+                    <div class="sector-content">
+                        <h3>Saúde e Educação</h3>
+                        <p>Automação de agendamentos, gestão de prontuários, matrículas e processos administrativos.</p>
+                        <a href="#contact" class="btn">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Pronto para revolucionar seus processos?</h2>
+            <p>Agende uma demonstração gratuita e descubra como podemos ajudar sua empresa a economizar tempo e dinheiro através da automação inteligente.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-white">Solicitar demonstração</a>
+                <a href="#" class="btn">Fale com um especialista</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>O que nossos clientes dizem</h2>
+                <p>Veja como nossas soluções de automação estão transformando negócios reais.</p>
+            </div>
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "A automação dos nossos processos de RH reduziu o tempo de onboarding de novos colaboradores em 70% e praticamente eliminou erros de cadastro. O ROI foi alcançado em apenas 3 meses!"
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/100/100" alt="Maria Silva">
+                        <div class="author-info">
+                            <h4>Maria Silva</h4>
+                            <p>Diretora de RH, Empresa XYZ</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "A integração automatizada entre nosso e-commerce e os marketplaces nos permitiu escalar as vendas sem precisar aumentar a equipe. Os pedidos são processados instantaneamente e sem erros."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/100/100" alt="João Pereira">
+                        <div class="author-info">
+                            <h4>João Pereira</h4>
+                            <p>CEO, Loja Online ABC</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "A automação dos processos financeiros nos permitiu ter relatórios em tempo real e reconciliação bancária diária, algo que antes levava dias para ser completado manualmente."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/100/100" alt="Ana Oliveira">
+                        <div class="author-info">
+                            <h4>Ana Oliveira</h4>
+                            <p>CFO, Indústria MNO</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Entre em contato</h2>
+                <p>Estamos prontos para ajudar sua empresa a dar o próximo passo em direção à transformação digital.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Informações de contato</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Alto Tietê, São Paulo, Brasil</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <p>+55 (11) 99999-9999</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>contato@automatech.com.br</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envie uma mensagem</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nome completo</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Empresa</label>
+                            <input type="text" id="company" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AutomaTech</h3>
+                    <p>Transformando negócios através da automação inteligente de processos.</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Soluções</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Consultoria Personalizada</a></li>
+                        <li><a href="#">Soluções Pré-Prontas</a></li>
+                        <li><a href="#">Assinatura (SaaS)</a></li>
+                        <li><a href="#">Treinamento e Suporte</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Setores</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Finanças</a></li>
+                        <li><a href="#">Recursos Humanos</a></li>
+                        <li><a href="#">Varejo e E-commerce</a></li>
+                        <li><a href="#">Indústria e Logística</a></li>
+                        <li><a href="#">Saúde e Educação</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Estudos de Caso</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 AutomaTech. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script para os olhos do robô seguirem o cursor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Código para os olhos do robô
+            const pupils = document.querySelectorAll('.pupil');
+            const eyes = document.querySelectorAll('.eye');
+            
+            document.addEventListener('mousemove', function(e) {
+                eyes.forEach(function(eye) {
+                    const eyeRect = eye.getBoundingClientRect();
+                    const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+                    const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+                    
+                    // Calcular a posição relativa do mouse em relação ao centro do olho
+                    const mouseX = e.clientX;
+                    const mouseY = e.clientY;
+                    
+                    // Calcular o ângulo entre o centro do olho e o cursor
+                    const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
+                    
+                    // Limitar o movimento da pupila dentro do olho
+                    const maxDistance = eyeRect.width / 4;
+                    const pupilX = Math.cos(angle) * maxDistance;
+                    const pupilY = Math.sin(angle) * maxDistance;
+                    
+                    // Aplicar a transformação à pupila
+                    const pupil = eye.querySelector('.pupil');
+                    pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+                });
+            });
+            
+            // Animação de piscar ocasionalmente
+            setInterval(function() {
+                if (Math.random() > 0.7) {
+                    eyes.forEach(eye => {
+                        eye.classList.add('blink');
+                        setTimeout(() => {
+                            eye.classList.remove('blink');
+                        }, 200);
+                    });
+                }
+            }, 3000);
+            
+            // Menu hamburguer
+            const hamburger = document.querySelector('.hamburger-icon');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', function() {
+                // Alternar a classe 'active' para o ícone do hamburguer
+                this.classList.toggle('active');
+                
+                // Alternar a classe 'mobile-menu-active' para os links de navegação
+                navLinks.classList.toggle('mobile-menu-active');
+                
+                // Impedir o scroll quando o menu está aberto
+                document.body.classList.toggle('menu-open');
+            });
+            
+            // Fechar o menu ao clicar em um link
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('mobile-menu-active');
+                    document.body.classList.remove('menu-open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
