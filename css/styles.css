@@ -929,5 +929,43 @@
       width: 100%;
     }
   }
+  #automacao {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+#automacao .container {
+    max-width: 800px;
+    margin: auto;
+}
+#automacao h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+#automacao p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+#automacao ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+#automacao ul li {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+.btn:hover {
+    background-color: #0056b3;
+}
   
   
